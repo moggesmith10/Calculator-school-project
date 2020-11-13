@@ -1,0 +1,12 @@
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\bin\Debug\Kalkylator.exe.config
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\bin\Debug\Kalkylator.exe
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\bin\Debug\Kalkylator.pdb
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\bin\Debug\Kalkylator.xml
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.vbprojAssemblyReference.cache
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.Form1.resources
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.Resources.resources
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.vbproj.GenerateResource.cache
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.vbproj.CoreCompileInputs.cache
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.exe
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.xml
+C:\Users\Morgan\source\repos\Kalkylator\Kalkylator\obj\Debug\Kalkylator.pdb
