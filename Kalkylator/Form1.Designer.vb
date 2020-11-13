@@ -48,12 +48,13 @@ Partial Class Form1
 		Me.btnMemReturn = New System.Windows.Forms.Button()
 		Me.btnClear = New System.Windows.Forms.Button()
 		Me.btnAllClear = New System.Windows.Forms.Button()
+		Me.lblCurrentMath = New System.Windows.Forms.Label()
 		Me.SuspendLayout()
 		'
 		'btnSquare
 		'
 		Me.btnSquare.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnSquare.Location = New System.Drawing.Point(12, 38)
+		Me.btnSquare.Location = New System.Drawing.Point(8, 69)
 		Me.btnSquare.Name = "btnSquare"
 		Me.btnSquare.Size = New System.Drawing.Size(35, 35)
 		Me.btnSquare.TabIndex = 0
@@ -70,7 +71,7 @@ Partial Class Form1
 		'btnDivideByX
 		'
 		Me.btnDivideByX.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnDivideByX.Location = New System.Drawing.Point(53, 38)
+		Me.btnDivideByX.Location = New System.Drawing.Point(49, 69)
 		Me.btnDivideByX.Name = "btnDivideByX"
 		Me.btnDivideByX.Size = New System.Drawing.Size(35, 35)
 		Me.btnDivideByX.TabIndex = 2
@@ -80,7 +81,7 @@ Partial Class Form1
 		'btnSquareRoot
 		'
 		Me.btnSquareRoot.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnSquareRoot.Location = New System.Drawing.Point(94, 38)
+		Me.btnSquareRoot.Location = New System.Drawing.Point(90, 69)
 		Me.btnSquareRoot.Name = "btnSquareRoot"
 		Me.btnSquareRoot.Size = New System.Drawing.Size(35, 35)
 		Me.btnSquareRoot.TabIndex = 3
@@ -90,7 +91,7 @@ Partial Class Form1
 		'btnDivision
 		'
 		Me.btnDivision.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnDivision.Location = New System.Drawing.Point(135, 38)
+		Me.btnDivision.Location = New System.Drawing.Point(131, 69)
 		Me.btnDivision.Name = "btnDivision"
 		Me.btnDivision.Size = New System.Drawing.Size(35, 35)
 		Me.btnDivision.TabIndex = 4
@@ -100,7 +101,7 @@ Partial Class Form1
 		'btnMemClear
 		'
 		Me.btnMemClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnMemClear.Location = New System.Drawing.Point(176, 38)
+		Me.btnMemClear.Location = New System.Drawing.Point(172, 69)
 		Me.btnMemClear.Name = "btnMemClear"
 		Me.btnMemClear.Size = New System.Drawing.Size(35, 35)
 		Me.btnMemClear.TabIndex = 5
@@ -110,7 +111,7 @@ Partial Class Form1
 		'btnNum7
 		'
 		Me.btnNum7.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum7.Location = New System.Drawing.Point(12, 79)
+		Me.btnNum7.Location = New System.Drawing.Point(8, 110)
 		Me.btnNum7.Name = "btnNum7"
 		Me.btnNum7.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum7.TabIndex = 6
@@ -120,7 +121,7 @@ Partial Class Form1
 		'btnNum8
 		'
 		Me.btnNum8.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum8.Location = New System.Drawing.Point(53, 79)
+		Me.btnNum8.Location = New System.Drawing.Point(49, 110)
 		Me.btnNum8.Name = "btnNum8"
 		Me.btnNum8.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum8.TabIndex = 7
@@ -130,7 +131,7 @@ Partial Class Form1
 		'btnNum9
 		'
 		Me.btnNum9.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum9.Location = New System.Drawing.Point(94, 79)
+		Me.btnNum9.Location = New System.Drawing.Point(90, 110)
 		Me.btnNum9.Name = "btnNum9"
 		Me.btnNum9.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum9.TabIndex = 8
@@ -140,7 +141,7 @@ Partial Class Form1
 		'btnNum6
 		'
 		Me.btnNum6.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum6.Location = New System.Drawing.Point(94, 120)
+		Me.btnNum6.Location = New System.Drawing.Point(90, 151)
 		Me.btnNum6.Name = "btnNum6"
 		Me.btnNum6.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum6.TabIndex = 11
@@ -150,7 +151,7 @@ Partial Class Form1
 		'btnNum5
 		'
 		Me.btnNum5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum5.Location = New System.Drawing.Point(53, 120)
+		Me.btnNum5.Location = New System.Drawing.Point(49, 151)
 		Me.btnNum5.Name = "btnNum5"
 		Me.btnNum5.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum5.TabIndex = 10
@@ -160,7 +161,7 @@ Partial Class Form1
 		'btnNum4
 		'
 		Me.btnNum4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum4.Location = New System.Drawing.Point(12, 120)
+		Me.btnNum4.Location = New System.Drawing.Point(8, 151)
 		Me.btnNum4.Name = "btnNum4"
 		Me.btnNum4.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum4.TabIndex = 9
@@ -170,7 +171,7 @@ Partial Class Form1
 		'btnNum3
 		'
 		Me.btnNum3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum3.Location = New System.Drawing.Point(94, 161)
+		Me.btnNum3.Location = New System.Drawing.Point(90, 192)
 		Me.btnNum3.Name = "btnNum3"
 		Me.btnNum3.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum3.TabIndex = 14
@@ -180,7 +181,7 @@ Partial Class Form1
 		'btnNum2
 		'
 		Me.btnNum2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum2.Location = New System.Drawing.Point(53, 161)
+		Me.btnNum2.Location = New System.Drawing.Point(49, 192)
 		Me.btnNum2.Name = "btnNum2"
 		Me.btnNum2.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum2.TabIndex = 13
@@ -190,7 +191,7 @@ Partial Class Form1
 		'btnNum1
 		'
 		Me.btnNum1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum1.Location = New System.Drawing.Point(12, 161)
+		Me.btnNum1.Location = New System.Drawing.Point(8, 192)
 		Me.btnNum1.Name = "btnNum1"
 		Me.btnNum1.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum1.TabIndex = 12
@@ -200,7 +201,7 @@ Partial Class Form1
 		'btnMultiply
 		'
 		Me.btnMultiply.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnMultiply.Location = New System.Drawing.Point(135, 79)
+		Me.btnMultiply.Location = New System.Drawing.Point(131, 110)
 		Me.btnMultiply.Name = "btnMultiply"
 		Me.btnMultiply.Size = New System.Drawing.Size(35, 35)
 		Me.btnMultiply.TabIndex = 15
@@ -210,7 +211,7 @@ Partial Class Form1
 		'btnSubtract
 		'
 		Me.btnSubtract.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnSubtract.Location = New System.Drawing.Point(135, 120)
+		Me.btnSubtract.Location = New System.Drawing.Point(131, 151)
 		Me.btnSubtract.Name = "btnSubtract"
 		Me.btnSubtract.Size = New System.Drawing.Size(35, 35)
 		Me.btnSubtract.TabIndex = 16
@@ -220,7 +221,7 @@ Partial Class Form1
 		'btnPlus
 		'
 		Me.btnPlus.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnPlus.Location = New System.Drawing.Point(135, 161)
+		Me.btnPlus.Location = New System.Drawing.Point(131, 192)
 		Me.btnPlus.Name = "btnPlus"
 		Me.btnPlus.Size = New System.Drawing.Size(35, 35)
 		Me.btnPlus.TabIndex = 17
@@ -230,7 +231,7 @@ Partial Class Form1
 		'btnNum0
 		'
 		Me.btnNum0.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnNum0.Location = New System.Drawing.Point(12, 202)
+		Me.btnNum0.Location = New System.Drawing.Point(8, 233)
 		Me.btnNum0.Name = "btnNum0"
 		Me.btnNum0.Size = New System.Drawing.Size(35, 35)
 		Me.btnNum0.TabIndex = 18
@@ -240,7 +241,7 @@ Partial Class Form1
 		'btnComma
 		'
 		Me.btnComma.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnComma.Location = New System.Drawing.Point(53, 202)
+		Me.btnComma.Location = New System.Drawing.Point(49, 233)
 		Me.btnComma.Name = "btnComma"
 		Me.btnComma.Size = New System.Drawing.Size(35, 35)
 		Me.btnComma.TabIndex = 19
@@ -250,7 +251,7 @@ Partial Class Form1
 		'btnFlip
 		'
 		Me.btnFlip.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnFlip.Location = New System.Drawing.Point(94, 202)
+		Me.btnFlip.Location = New System.Drawing.Point(90, 233)
 		Me.btnFlip.Name = "btnFlip"
 		Me.btnFlip.Size = New System.Drawing.Size(35, 35)
 		Me.btnFlip.TabIndex = 20
@@ -260,7 +261,7 @@ Partial Class Form1
 		'btnEqual
 		'
 		Me.btnEqual.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnEqual.Location = New System.Drawing.Point(135, 202)
+		Me.btnEqual.Location = New System.Drawing.Point(131, 233)
 		Me.btnEqual.Name = "btnEqual"
 		Me.btnEqual.Size = New System.Drawing.Size(35, 35)
 		Me.btnEqual.TabIndex = 21
@@ -270,7 +271,7 @@ Partial Class Form1
 		'btnMemAdd
 		'
 		Me.btnMemAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnMemAdd.Location = New System.Drawing.Point(176, 79)
+		Me.btnMemAdd.Location = New System.Drawing.Point(172, 110)
 		Me.btnMemAdd.Name = "btnMemAdd"
 		Me.btnMemAdd.Size = New System.Drawing.Size(35, 35)
 		Me.btnMemAdd.TabIndex = 22
@@ -280,7 +281,7 @@ Partial Class Form1
 		'btnMemReturn
 		'
 		Me.btnMemReturn.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnMemReturn.Location = New System.Drawing.Point(176, 120)
+		Me.btnMemReturn.Location = New System.Drawing.Point(172, 151)
 		Me.btnMemReturn.Name = "btnMemReturn"
 		Me.btnMemReturn.Size = New System.Drawing.Size(35, 35)
 		Me.btnMemReturn.TabIndex = 23
@@ -290,7 +291,7 @@ Partial Class Form1
 		'btnClear
 		'
 		Me.btnClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnClear.Location = New System.Drawing.Point(176, 161)
+		Me.btnClear.Location = New System.Drawing.Point(172, 192)
 		Me.btnClear.Name = "btnClear"
 		Me.btnClear.Size = New System.Drawing.Size(35, 35)
 		Me.btnClear.TabIndex = 24
@@ -300,18 +301,28 @@ Partial Class Form1
 		'btnAllClear
 		'
 		Me.btnAllClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
-		Me.btnAllClear.Location = New System.Drawing.Point(176, 202)
+		Me.btnAllClear.Location = New System.Drawing.Point(172, 233)
 		Me.btnAllClear.Name = "btnAllClear"
 		Me.btnAllClear.Size = New System.Drawing.Size(35, 35)
 		Me.btnAllClear.TabIndex = 25
 		Me.btnAllClear.Text = "AC"
 		Me.btnAllClear.UseVisualStyleBackColor = True
 		'
+		'lblCurrentMath
+		'
+		Me.lblCurrentMath.AutoSize = True
+		Me.lblCurrentMath.Location = New System.Drawing.Point(12, 35)
+		Me.lblCurrentMath.Name = "lblCurrentMath"
+		Me.lblCurrentMath.Size = New System.Drawing.Size(31, 13)
+		Me.lblCurrentMath.TabIndex = 26
+		Me.lblCurrentMath.Text = "Math"
+		'
 		'Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(217, 247)
+		Me.ClientSize = New System.Drawing.Size(217, 275)
+		Me.Controls.Add(Me.lblCurrentMath)
 		Me.Controls.Add(Me.btnAllClear)
 		Me.Controls.Add(Me.btnClear)
 		Me.Controls.Add(Me.btnMemReturn)
@@ -371,4 +382,5 @@ Partial Class Form1
 	Friend WithEvents btnMemReturn As Button
 	Friend WithEvents btnClear As Button
 	Friend WithEvents btnAllClear As Button
+	Friend WithEvents lblCurrentMath As Label
 End Class
