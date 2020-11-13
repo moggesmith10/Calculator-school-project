@@ -1,1 +1,1 @@
-# Calculator-school-projekt-
+# Calculator-school-project
