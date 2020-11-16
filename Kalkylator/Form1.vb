@@ -40,6 +40,12 @@
 			Return "E: Div/0" 'If all legal return true
 		End If
 
+		'Legalize some math
+		While (Result.Contains("--"))
+			Result = Result.Replace("--", "+")
+		End While
+
+
 		Return "True" 'Else return false
 	End Function
 
@@ -95,7 +101,7 @@
 		While ((IsNumeric(val1(len)) Or val1(len) = ",") And len >= 1)
 			len -= 1
 		End While
-		val1 = val1.Substring(len) 'Remove all chars before it
+		val1 = val1.Substring(len + 1) 'Remove all chars before it
 
 		Dim val2 = Result.Substring(InStr(Result, "/"))
 		len = 0
@@ -109,16 +115,16 @@
 
 	Sub CalculateAdditionAndSubtraction()
 		'Loop through all '+' and '-' in string
-		While (Result.Contains("+") Or Result.Contains("-"))
+		While (Result.Contains("+") Or Result.Substring(1).Contains("-")) 'First char cant be minus, just means negative number
 
 			'Get pos of next plus and next minus
 			Dim nextAddition = InStr(Result, "+")
-			Dim nextSubtraction = InStr(Result, "-")
+			Dim nextSubtraction = InStr(Result.Substring(1), "-") 'First char cant be minus, just means negative number
 
 			'If there is a addition and its before next subtraction or there is no subtraction
 			If (Not nextAddition = 0 AndAlso (nextAddition < nextSubtraction Or nextSubtraction = 0)) Then
 				CalculateAddition() 'Do addition next
-			ElseIf (Not nextSubtraction = 0 AndAlso (nextAddition > nextSubtraction Or nextAddition = 0)) Then 'Reversed, Keep all checks for redundancy
+			ElseIf (Not nextSubtraction = 0 AndAlso (nextAddition > nextSubtraction Or nextAddition = 0)) Then 'Reversed, Keep all checks for redundancy, not 1 for negative numbers
 				CalculateSubtraction() 'Do subtraction next
 			End If
 		End While
@@ -127,7 +133,7 @@
 	Sub CalculateSubtraction()
 		'Prep value 1
 		'Remove all after val1
-		Dim val1 = Result.Substring(0, InStr(Result, "-") - 1)
+		Dim val1 = Result.Substring(0, InStr(Result.Substring(1), "-")) 'Remove first char incase negative numbers, no need to +1 due to counting from 0. (used to be -1 before substring was implemented)
 		'Get val1 length
 		Dim len = val1.Length - 1
 		While ((Not IsNumeric(val1(len)) Or Not val1(len) = ",") And len >= 1)
@@ -227,7 +233,7 @@
 
 	'Rules:
 	'1: +, -, /, X
-	'2: √, ²
+	'2: √, ², +/-
 	'3: numbers
 	'4: comma
 	Sub buttonClick(buttonValue, rule)
@@ -241,6 +247,8 @@
 				tbxMain.Text = Math.Sqrt(tbxMain.Text)
 			ElseIf (buttonValue = "²") Then
 				tbxMain.Text = Math.Pow(tbxMain.Text, 2)
+			ElseIf (buttonValue = "+/-") Then
+				tbxMain.Text = -Double.Parse(tbxMain.Text)
 			End If
 			SetGhost(False)
 
@@ -301,5 +309,41 @@
 
 	Private Sub btnNum2_Click(sender As Object, e As EventArgs) Handles btnNum2.Click
 		buttonClick("2", 3)
+	End Sub
+
+	Private Sub btnSubtract_Click(sender As Object, e As EventArgs) Handles btnSubtract.Click
+		buttonClick("-", 1)
+	End Sub
+
+	Private Sub btnNum3_Click(sender As Object, e As EventArgs) Handles btnNum3.Click
+		buttonClick("3",3)
+	End Sub
+
+	Private Sub btnNum4_Click(sender As Object, e As EventArgs) Handles btnNum4.Click
+		buttonClick("4", 3)
+	End Sub
+
+	Private Sub btnNum5_Click(sender As Object, e As EventArgs) Handles btnNum5.Click
+		buttonClick("5",3)
+	End Sub
+
+	Private Sub btnNum6_Click(sender As Object, e As EventArgs) Handles btnNum6.Click
+		buttonClick("6", 3)
+	End Sub
+
+	Private Sub btnNum7_Click(sender As Object, e As EventArgs) Handles btnNum7.Click
+		buttonClick("7", 3)
+	End Sub
+
+	Private Sub btnNum8_Click(sender As Object, e As EventArgs) Handles btnNum8.Click
+		buttonClick("8", 3)
+	End Sub
+
+	Private Sub btnNum9_Click(sender As Object, e As EventArgs) Handles btnNum9.Click
+		buttonClick("9", 3)
+	End Sub
+
+	Private Sub btnFlip_Click(sender As Object, e As EventArgs) Handles btnFlip.Click
+		buttonClick("+/-", 2)
 	End Sub
 End Class
