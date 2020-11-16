@@ -30,8 +30,7 @@
 			CurrentMath = ""
 			tbxMain.Text = Result
 			lblCurrentMath.Text = ""
-			InputGhost = False
-			tbxMain.ForeColor = Color.Black
+			SetGhost(False)
 		End If
 
 	End Sub
