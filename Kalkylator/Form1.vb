@@ -2,6 +2,7 @@
 	Dim CurrentMath As String
 	Dim Result As String
 	Dim InputGhost As Boolean
+	Dim Memory As String = "" 'String feels safe, no errors so aint gonna change it
 
 	'Obs, binära operationen enligt kravspecen är inte nödvändig enligt muntligt tillåtelse
 
@@ -115,7 +116,7 @@
 
 	Sub CalculateAdditionAndSubtraction()
 		'Loop through all '+' and '-' in string
-		While (Result.Contains("+") Or Result.Substring(1).Contains("-")) 'First char cant be minus, just means negative number
+		While (Result.Length > 0 AndAlso (Result.Contains("+") Or Result.Substring(1).Contains("-"))) 'First char cant be minus, just means negative number, dont run incase empty because substring
 
 			'Get pos of next plus and next minus
 			Dim nextAddition = InStr(Result, "+")
@@ -169,6 +170,10 @@
 			len += 1
 		End While
 		val2 = val2.Substring(0, len) 'Remove all chars after it
+		If (val2 = "") Then ' val2 can become empty with some Clear trickery
+			Result += 0
+			val2 = 0
+		End If
 
 		Result = Result.Replace(val1 + "+" + val2, Double.Parse(val1) + Double.Parse(val2)) '+ works as string appender, so we need to cast to double
 	End Sub
@@ -197,7 +202,11 @@
 
 		'Handle legal keys
 		If (legalKeys.Contains(e.KeyChar)) Then
-			buttonClick(e.KeyChar, 1)
+			If (e.KeyChar = "*") Then '* is the required keyboard input, X is used to show it
+				buttonClick("X", 1)
+			Else
+				buttonClick(e.KeyChar, 1)
+			End If
 		End If
 
 		e.Handled = True
@@ -250,7 +259,7 @@
 			ElseIf (buttonValue = "+/-") Then
 				tbxMain.Text = -Double.Parse(tbxMain.Text)
 			End If
-			SetGhost(False)
+			SetGhost(True) ' Why kravspec gotta be so cruel
 
 		ElseIf (rule = 3) Then
 			If (tbxMain.Text.Length = 0 OrElse Not tbxMain.Text(tbxMain.Text.Length - 1) = "²") Then 'Cannot append number after ²
@@ -269,6 +278,17 @@
 				tbxMain.Text += buttonValue
 			End If
 		End If
+	End Sub
+
+	Sub Clear()
+		tbxMain.Text = ""
+	End Sub
+
+	Sub AllClear()
+		tbxMain.Text = ""
+		lblCurrentMath.Text = ""
+		CurrentMath = ""
+		Result = ""
 	End Sub
 
 	Private Sub btnSquare_Click(sender As Object, e As EventArgs) Handles btnSquare.Click
@@ -345,5 +365,27 @@
 
 	Private Sub btnFlip_Click(sender As Object, e As EventArgs) Handles btnFlip.Click
 		buttonClick("+/-", 2)
+	End Sub
+
+	Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+		Clear()
+	End Sub
+
+	Private Sub btnAllClear_Click(sender As Object, e As EventArgs) Handles btnAllClear.Click
+		AllClear()
+	End Sub
+
+	Private Sub btnMemReturn_Click(sender As Object, e As EventArgs) Handles btnMemReturn.Click
+		tbxMain.Text = Memory
+	End Sub
+
+	Private Sub btnMemAdd_Click(sender As Object, e As EventArgs) Handles btnMemAdd.Click
+		Calculate(False)
+		Memory = Double.Parse(Memory) + Double.Parse(Result)
+		SetGhost(True)
+	End Sub
+
+	Private Sub btnMemClear_Click(sender As Object, e As EventArgs) Handles btnMemClear.Click
+		Memory = 0
 	End Sub
 End Class

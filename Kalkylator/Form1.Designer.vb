@@ -349,6 +349,7 @@ Partial Class Form1
 		Me.Controls.Add(Me.btnDivideByX)
 		Me.Controls.Add(Me.tbxMain)
 		Me.Controls.Add(Me.btnSquare)
+		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
 		Me.Name = "Form1"
 		Me.Text = "Kalkylator"
 		Me.ResumeLayout(False)
