@@ -12,8 +12,14 @@
 		If (ghost) Then
 			Result = Result.Remove(Result.Length - 1) 'If ghost remove last char, i.e +/-/X/etc.
 		Else
+			If (tbxMain.Text.Contains("E")) Then 'Remove E for errors or incase more numbers than allowed is input (1.235E...)
+				tbxMain.Text = "0"
+			End If
+
 			Result += tbxMain.Text
 		End If
+
+
 		If (VerifyLegalMath() = "True") Then 'Returns string to allow error message TODO see if there is a typeof() command
 			CalculateMultiplicationAndDivison()
 			CalculateAdditionAndSubtraction()
@@ -37,7 +43,7 @@
 
 	Function VerifyLegalMath()
 		If (Not VerifyNoDividesByZero()) Then 'Go through all checks
-			Return "E: Div/0" 'If all legal return true
+			Return "E: Div/0" 'Error: Divide By Zero
 		End If
 
 		'Legalize some math
@@ -45,8 +51,7 @@
 			Result = Result.Replace("--", "+")
 		End While
 
-
-		Return "True" 'Else return false
+		Return "True" 'If all legal return true (string so we can return error messages)
 	End Function
 
 	Function VerifyNoDividesByZero() '
@@ -265,11 +270,18 @@
 
 	Sub WriteUnaryOperators(buttonValue)
 		If (buttonValue = "√") Then
-			tbxMain.Text = Math.Sqrt(tbxMain.Text)
+			If (Double.Parse(tbxMain.Text) > 0) Then 'Dont root 0 or negative numbers
+				tbxMain.Text = Math.Sqrt(tbxMain.Text)
+			Else
+				tbxMain.Text = "E: Irr" 'u ohh, it seems u should have done some legal math there buddy, too bad its gone now
+				SetGhost(True)
+			End If
 		ElseIf (buttonValue = "²") Then
 			tbxMain.Text = Math.Pow(tbxMain.Text, 2)
 		ElseIf (buttonValue = "+/-") Then
 			tbxMain.Text = -Double.Parse(tbxMain.Text)
+		ElseIf (buttonValue = "1/X") Then
+			tbxMain.Text = 1 / Double.Parse(tbxMain.Text)
 		End If
 		SetGhost(True) ' Why kravspec gotta be so cruel
 	End Sub
@@ -277,14 +289,13 @@
 	Sub WriteNumbers(buttonValue)
 		If (InputGhost) Then
 			tbxMain.Text = buttonValue
-			InputGhost = False
-			tbxMain.ForeColor = Color.Black
-		Else
+			SetGhost(False)
+		ElseIf (tbxMain.Text.Length < 8) Then 'Maxlength of input is 8 chars
 			tbxMain.Text += buttonValue
 		End If
 	End Sub
 
-	Sub WriteComma(buttonValue)
+	Sub WriteComma(buttonValue) 'Keep buttonValue for redundancy, should make it easier to globalize (i.e , -> .)
 		If (tbxMain.Text = "" Or InputGhost) Then
 			tbxMain.Text = "0" + buttonValue
 			SetGhost(False)
@@ -401,5 +412,9 @@
 
 	Private Sub btnMemClear_Click(sender As Object, e As EventArgs) Handles btnMemClear.Click
 		Memory = 0
+	End Sub
+
+	Private Sub btnDivideByX_Click(sender As Object, e As EventArgs) Handles btnDivideByX.Click
+		buttonClick("1/X", 2)
 	End Sub
 End Class
