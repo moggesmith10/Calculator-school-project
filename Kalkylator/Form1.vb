@@ -2,7 +2,7 @@
 	Dim CurrentMath As String
 	Dim Result As String
 	Dim InputGhost As Boolean
-	Dim Memory As String = "" 'String feels safe, no errors so aint gonna change it
+	Dim Memory As Double = 0
 	Dim KeysDown As New List(Of Keys)
 
 	'Obs, binära operationen enligt kravspecen är inte nödvändig enligt muntligt tillåtelse
@@ -126,7 +126,7 @@
 
 			'Get pos of next plus and next minus
 			Dim nextAddition = InStr(Result, "+")
-			Dim nextSubtraction = InStr(Result.Substring(1), "-") 'First char cant be minus, just means negative number
+			Dim nextSubtraction = InStr(Result.Substring(1), "-") + 1 'First char cant be minus, just means negative number
 
 			'If there is a addition and its before next subtraction or there is no subtraction
 			If (Not nextAddition = 0 AndAlso (nextAddition < nextSubtraction Or nextSubtraction = 0)) Then
@@ -172,7 +172,7 @@
 		'Get val2 length
 		Dim val2 = Result.Substring(InStr(Result, "+"))
 		len = 0
-		While (len < val2.Length AndAlso (IsNumeric(val2(len)) Or val2(len) = ","))
+		While (len < val2.Length AndAlso (IsNumeric(val2(len)) Or val2(len) = "," Or val2(len) = "-"))
 			len += 1
 		End While
 		val2 = val2.Substring(0, len) 'Remove all chars after it
@@ -270,6 +270,7 @@
 	Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		CurrentMath = ""
 		lblCurrentMath.Text = CurrentMath
+		lblMem.Text = ""
 	End Sub
 
 
@@ -437,10 +438,12 @@
 		Calculate(False)
 		Memory = Double.Parse(Memory) + Double.Parse(Result)
 		SetGhost(True)
+		lblMem.Text = "Mem: " + Memory.ToString()
 	End Sub
 
 	Private Sub btnMemClear_Click(sender As Object, e As EventArgs) Handles btnMemClear.Click
 		Memory = 0
+		lblMem.Text = ""
 	End Sub
 
 	Private Sub btnDivideByX_Click(sender As Object, e As EventArgs) Handles btnDivideByX.Click

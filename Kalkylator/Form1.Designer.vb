@@ -49,6 +49,7 @@ Partial Class Form1
 		Me.btnClear = New System.Windows.Forms.Button()
 		Me.btnAllClear = New System.Windows.Forms.Button()
 		Me.lblCurrentMath = New System.Windows.Forms.Label()
+		Me.lblMem = New System.Windows.Forms.Label()
 		Me.SuspendLayout()
 		'
 		'btnSquare
@@ -317,11 +318,22 @@ Partial Class Form1
 		Me.lblCurrentMath.TabIndex = 26
 		Me.lblCurrentMath.Text = "Math"
 		'
+		'lblMem
+		'
+		Me.lblMem.AutoSize = True
+		Me.lblMem.Location = New System.Drawing.Point(12, 53)
+		Me.lblMem.Name = "lblMem"
+		Me.lblMem.Size = New System.Drawing.Size(40, 13)
+		Me.lblMem.TabIndex = 27
+		Me.lblMem.Text = "lblMem"
+		Me.lblMem.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+		'
 		'Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.ClientSize = New System.Drawing.Size(217, 275)
+		Me.Controls.Add(Me.lblMem)
 		Me.Controls.Add(Me.lblCurrentMath)
 		Me.Controls.Add(Me.btnAllClear)
 		Me.Controls.Add(Me.btnClear)
@@ -384,4 +396,5 @@ Partial Class Form1
 	Friend WithEvents btnClear As Button
 	Friend WithEvents btnAllClear As Button
 	Friend WithEvents lblCurrentMath As Label
+	Friend WithEvents lblMem As Label
 End Class
