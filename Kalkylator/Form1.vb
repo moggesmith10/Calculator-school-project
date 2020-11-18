@@ -246,36 +246,51 @@
 	'4: comma
 	Sub buttonClick(buttonValue, rule)
 		If (rule = 1) Then
-			If (tbxMain.Text IsNot "" AndAlso (IsNumeric(tbxMain.Text(tbxMain.Text.Length - 1)) Or tbxMain.Text(tbxMain.Text.Length - 1) = "²")) Then
-				CurrentMath += tbxMain.Text + buttonValue
-				Calculate(True)
-			End If
+			WriteOperators(buttonValue)
 		ElseIf (rule = 2) Then 'Roots and squares happen instantly
-			If (buttonValue = "√") Then
-				tbxMain.Text = Math.Sqrt(tbxMain.Text)
-			ElseIf (buttonValue = "²") Then
-				tbxMain.Text = Math.Pow(tbxMain.Text, 2)
-			ElseIf (buttonValue = "+/-") Then
-				tbxMain.Text = -Double.Parse(tbxMain.Text)
-			End If
-			SetGhost(True) ' Why kravspec gotta be so cruel
-
+			WriteUnaryOperators(buttonValue)
 		ElseIf (rule = 3) Then
-			If (tbxMain.Text.Length = 0 OrElse Not tbxMain.Text(tbxMain.Text.Length - 1) = "²") Then 'Cannot append number after ²
-				If (InputGhost) Then
-					tbxMain.Text = buttonValue
-					InputGhost = False
-					tbxMain.ForeColor = Color.Black
-				Else
-					tbxMain.Text += buttonValue
-				End If
-			End If
+			WriteNumbers(buttonValue)
 		ElseIf (rule = 4) Then
-			If (tbxMain.Text = "" Or InputGhost) Then
-				tbxMain.Text = "0" + buttonValue
-			ElseIf (IsNumeric(tbxMain.Text(tbxMain.Text.Length - 1))) Then 'Can only append to numbers
-				tbxMain.Text += buttonValue
-			End If
+			WriteComma(buttonValue)
+		End If
+	End Sub
+
+	Sub WriteOperators(buttonValue)
+		If (tbxMain.Text IsNot "" AndAlso (IsNumeric(tbxMain.Text(tbxMain.Text.Length - 1)) Or tbxMain.Text(tbxMain.Text.Length - 1) = "²")) Then
+			CurrentMath += tbxMain.Text + buttonValue
+			Calculate(True)
+		End If
+	End Sub
+
+	Sub WriteUnaryOperators(buttonValue)
+		If (buttonValue = "√") Then
+			tbxMain.Text = Math.Sqrt(tbxMain.Text)
+		ElseIf (buttonValue = "²") Then
+			tbxMain.Text = Math.Pow(tbxMain.Text, 2)
+		ElseIf (buttonValue = "+/-") Then
+			tbxMain.Text = -Double.Parse(tbxMain.Text)
+		End If
+		SetGhost(True) ' Why kravspec gotta be so cruel
+	End Sub
+
+	Sub WriteNumbers(buttonValue)
+		If (InputGhost) Then
+			tbxMain.Text = buttonValue
+			InputGhost = False
+			tbxMain.ForeColor = Color.Black
+		Else
+			tbxMain.Text += buttonValue
+		End If
+	End Sub
+
+	Sub WriteComma(buttonValue)
+		If (tbxMain.Text = "" Or InputGhost) Then
+			tbxMain.Text = "0" + buttonValue
+			SetGhost(False)
+		ElseIf (IsNumeric(tbxMain.Text(tbxMain.Text.Length - 1))) Then 'Can only append to numbers
+			tbxMain.Text += buttonValue
+			SetGhost(False)
 		End If
 	End Sub
 
