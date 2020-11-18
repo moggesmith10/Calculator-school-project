@@ -3,16 +3,18 @@
 	Dim Result As String
 	Dim InputGhost As Boolean
 	Dim Memory As String = "" 'String feels safe, no errors so aint gonna change it
+	Dim KeysDown As New List(Of Keys)
 
 	'Obs, binära operationen enligt kravspecen är inte nödvändig enligt muntligt tillåtelse
 
+	'Dirty
 	Sub Calculate(ghost As Boolean)
 		'TODO add check for numbers longer than 8 chars
 		Result = CurrentMath
 		If (ghost) Then
 			Result = Result.Remove(Result.Length - 1) 'If ghost remove last char, i.e +/-/X/etc.
 		Else
-			If (tbxMain.Text.Contains("E")) Then 'Remove E for errors or incase more numbers than allowed is input (1.235E...)
+			If (tbxMain.Text.Contains("E")) Then 'Remove E for errors or incase somehow more numbers than allowed is input (1.235E...)
 				tbxMain.Text = "0"
 			End If
 
@@ -192,9 +194,9 @@
 		End If
 	End Sub
 
+	'Dirty
 	Private Sub tbxMain_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbxMain.KeyPress
-		Dim valueLegal = False
-		Dim legalKeys = New Char() {"+", "-", "/", "*"}
+		Dim legalKeys = New Char() {"+", "-", "/", "*", "C"}
 		'Handle comma, stop multiple commas being writen
 		If (e.KeyChar = "." AndAlso Not tbxMain.Text.Contains(".")) Then
 			tbxMain.Text += "."
@@ -206,10 +208,18 @@
 
 		'Handle legal keys
 		If (legalKeys.Contains(e.KeyChar)) Then
-			If (e.KeyChar = "*") Then '* is the required keyboard input, X is used to show it
-				buttonClick("X", 1)
+			If (KeysDown.Contains(Keys.ControlKey)) Then
+				If (e.KeyChar = "/") Then
+					buttonClick("1/X", 2)
+				End If
 			Else
-				buttonClick(e.KeyChar, 1)
+				If (e.KeyChar = "*") Then '* is the required keyboard input, X is used to show it
+					buttonClick("X", 1)
+				ElseIf (e.KeyChar = "C") Then 'C should never be written to textbox
+					Clear()
+				Else
+					buttonClick(e.KeyChar, 1)
+				End If
 			End If
 		End If
 
@@ -217,25 +227,44 @@
 		tbxMain.Select(tbxMain.Text.Length, 0)
 	End Sub
 
+	'Dirty
 	Private Sub tbxMain_KeyDown(sender As Object, e As KeyEventArgs) Handles tbxMain.KeyDown
 		'TODO do the rest.
+		KeysDown.Add(e.KeyCode)
 		'If input is enter, caclulate
 		If (e.KeyCode = Keys.Enter) Then
 			Calculate(False)
+		End If
+		If (e.KeyCode = Keys.Escape) Then
+			AllClear()
+		End If
+		If (KeysDown.Contains(Keys.ControlKey)) Then
+			If (e.KeyCode = Keys.Multiply) Then 'Control and star is buggy, needs to be here since it doesnt print
+				buttonClick("²", 2)
+			ElseIf (e.KeyCode = Keys.Divide) Then
+				buttonClick("1/X", 2)
+			End If
+
 		End If
 		'If backspace and tbxMain.text isnt empty
 		If (e.KeyCode = Keys.Back AndAlso tbxMain.Text IsNot "") Then
 			If (InputGhost) Then
 				tbxMain.Text = ""
+				SetGhost(False) 'Unecesary but good for redundancy, currently sets non existent text to black so no noticiable difference
 			Else
 				tbxMain.Text = tbxMain.Text.Substring(0, tbxMain.Text.Length - 1)
 			End If
 			tbxMain.Select(tbxMain.Text.Length, 0)
 		End If
+		'If (e.KeyCode = Keys.) Then
 		'Stop moving of cursor instead of complicating backspacing
 		If (e.KeyCode = Keys.Right Or e.KeyCode = Keys.Left Or e.KeyCode = Keys.Up Or e.KeyCode = Keys.Down) Then
 			e.Handled = True
 		End If
+	End Sub
+
+	Private Sub tbxMain_KeyUp(sender As Object, e As KeyEventArgs) Handles tbxMain.KeyUp
+		KeysDown.Remove(e.KeyCode)
 	End Sub
 
 	Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -277,7 +306,7 @@
 				SetGhost(True)
 			End If
 		ElseIf (buttonValue = "²") Then
-			tbxMain.Text = Math.Pow(tbxMain.Text, 2)
+			tbxMain.Text = Math.Pow(tbxMain.Text, 2) 'Can be used without Math class if needed
 		ElseIf (buttonValue = "+/-") Then
 			tbxMain.Text = -Double.Parse(tbxMain.Text)
 		ElseIf (buttonValue = "1/X") Then
