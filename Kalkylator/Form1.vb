@@ -84,7 +84,7 @@
 		Dim val1 = Result.Substring(0, InStr(Result, "X") - 1)
 		'Get val1 length
 		Dim len = val1.Length - 1
-		While ((Not IsNumeric(val1(len)) Or Not val1(len) = ",") And len >= 1)
+		While ((Not IsNumeric(val1(len)) Or val1(len) = ",") And len >= 1)
 			len -= 1
 		End While
 		val1 = val1.Substring(len) 'Remove all chars before it
@@ -128,6 +128,10 @@
 			Dim nextAddition = InStr(Result, "+")
 			Dim nextSubtraction = InStr(Result.Substring(1), "-") + 1 'First char cant be minus, just means negative number
 
+			If (Not Result.Contains("-")) Then 'Substring 1 + 1 works whenever there is a minus, but not when there isn't
+				nextSubtraction = 0
+			End If
+
 			'If there is a addition and its before next subtraction or there is no subtraction
 			If (Not nextAddition = 0 AndAlso (nextAddition < nextSubtraction Or nextSubtraction = 0)) Then
 				CalculateAddition() 'Do addition next
@@ -141,6 +145,9 @@
 		'Prep value 1
 		'Remove all after val1
 		Dim val1 = Result.Substring(0, InStr(Result.Substring(1), "-")) 'Remove first char incase negative numbers, no need to +1 due to counting from 0. (used to be -1 before substring was implemented)
+		If (val1 = "") Then
+			val1 = 0 'Safety first kiddos
+		End If
 		'Get val1 length
 		Dim len = val1.Length - 1
 		While ((Not IsNumeric(val1(len)) Or Not val1(len) = ",") And len >= 1)
